@@ -7,8 +7,8 @@ divides d n = rem n d == 0
 
 -- least divisor of n that is >= k
 ldf k n | divides k n = k
-		| k^2 > n	  = n
-		| otherwise	  = ldf (k+1) n
+        | k^2 > n     = n
+        | otherwise   = ldf (k+1) n
 
 -- least divisor of n is defined as the 
 -- least divisor of n that is >= 2
@@ -18,9 +18,9 @@ ld n = ldf 2 n
 -- a number greater than 1
 -- is prime iff it is its own least
 -- divisor
-prime0 n | n < 1 		= error "not a positive integer"
-		 | n == 1		= False
-		 | otherwise	= ld n == n
+prime0 n | n < 1     = error "not a positive integer"
+         | n == 1    = False
+         | otherwise = ld n == n
 
 -- lists
 
