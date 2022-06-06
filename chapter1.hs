@@ -71,3 +71,26 @@ length' (x:xs) = 1 + length' xs
 average :: [Int] -> Float
 average [] = error "empty list"
 average xs = fromIntegral (sum' xs) / fromIntegral (length' xs)
+
+-- count the number of times a character happens
+-- in a string
+occur :: Char -> String -> Int
+occur y [] = 0
+occur y [x] | y == x = 1
+            | otherwise = 0
+occur y (x:xs) | y == x = 1 + occur y xs
+               | otherwise = 0 + occur y xs
+
+-- blowup function
+b2 :: Int -> Int -> String -> String
+b2 x y [] = []
+b2 x y [d] | x-y == 1 = [d] ++ b2 (x+1) 0 []
+b2 x y (d:ds) | x-y > 1 = [d] ++ (b2 x (y+1) (d:ds))
+              | otherwise = b2 (x+1) (-1) ds
+
+blowup :: String -> String
+blowup [] = []
+blowup [x] = [x]
+blowup (x:xs) = b2 1 (-1) (x:xs)
+
+-- almost correct
